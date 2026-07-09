@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 지선이를 위해서 노력하는 나영이 </title>
+
+  <!-- [컨페티 효과 라이브러리] -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+
+    body {
+      background-color: #8ec6f5; 
+      font-family: 'Gowun Batang', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px;
+      margin: 0;
+      color: #1e293b;
+    }
+    .card {
+      background-color: #ffffff;
+      padding: 30px 20px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.15);
+      width: 100%;
+      max-width: 450px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    
+    /* [타이머 & 투표] */
+    .countdown-box {
+      background-color: #0ea5e9;
+      color: white;
+      padding: 12px;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+      font-family: 'Gowun Batang', serif;
+    }
+    .concept-tag {
+      display: inline-block;
+      background-color: #e0f2fe;
+      color: #0369a1;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 5px;
+    }
+    .vote-section {
+      background-color: #f8fafc;
+      padding: 20px 15px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      border: 1.5px solid #e2e8f0;
+      font-family: 'Gowun Batang', serif;
+    }
+    .vote-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #0369a1;
+      margin-bottom: 15px;
+    }
+    .vote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+    .vote-btn {
+      background-color: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      padding: 12px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-family: 'Gowun Batang', serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #1e293b;
+    }
+    .vote-btn:hover {
+      border-color: #0ea5e9;
+      background-color: #f0f9ff;
+      transform: translateY(-2px);
+    }
+    .vote-emoji {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    .vote-count {
+      font-size: 12px;
+      color: #0ea5e9;
+      margin-top: 5px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 15px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      box-sizing: border-box;
+      font-size: 16px;
+      outline: none;
+      background-color: #f8fafc;
+      transition: all 0.3s ease;
+      font-family: 'Gowun Batang', sans-serif;
+      font-size: 16px;
+    }
+    input:focus, textarea:focus {
+      border: 1.5px solid #0ea5e9;
+      background-color: #ffffff;	
+      box-shadow: 0 0 8px rgba(14, 165, 233, 0.2);
+    }
+    textarea {
+      height: 120px;
+      resize: none;
+      font-family: 'Gowun Batang', sans-serif;
+      font-size: 16px;
+    }
+    button.submit-btn {
+      width: 100%;
+      padding: 16px;
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button.submit-btn:hover {
+      background-color: #0284c7;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #e2e8f0;
+      margin: 30px 0;
+    }
+
+    h1 {
+      font-size: 25px;
+      color: #0ea5e9;
+      margin-bottom: 20px;
+   }
+
+    h2 {
+      font-size: 18px;
+      color: #334155;
+      margin-bottom: 20px;
+    }
+    .comment-item {
+      background-color: #f0fdf4;
+      border-left: 4px solid #38bdf8;
+      padding: 15px;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      text-align: left;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+    .comment-name {
+      font-weight: bold;
+      color: #0284c7;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .comment-text {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* [팝업창 스타일 정의] */
+    .modal-overlay {
+      display: none; /* 기본 숨김 (JS에서 flex로 켬) */
+      position: fixed; /* 내가 스크롤을 어디에 내렸든 화면 창 기준 고정 */
+      top: 0;
+      left: 0;
+      width: 100vw; /* 화면 가로 너비 100% 꽉 채우기 */
+      height: 100vh; /* 화면 세로 높이 100% 꽉 채우기 */
+      background-color: rgba(15, 23, 42, 0.6); /* 투명한 블랙 배경 */
+      z-index: 99999; /* 화면의 그 어떤 요소보다 맨 위에 뜨도록 설정 */
+      justify-content: center; /* 가로 기준 중앙 정렬 */
+      align-items: center; /* 세로 기준 중앙 정렬 */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 30px 20px;
+      border-radius: 24px;
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      animation: popUp 0.3s ease;
+    }
+    @keyframes popUp {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-content h3 {
+      color: #0284c7;
+      margin-top: 0;
+      font-size: 20px;
+    }
+    .modal-content p {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    .modal-close-btn {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Gowun Batang', serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- [디데이 타이머] -->
+    <div id="dday-timer" class="countdown-box">남은 시간 계산 </div>
+    <div class="concept-tag"> 🎂 지서니 서른두돌잔치 🎂</div>
+     
+    <h1>하나둘셋! 지선아 생일 축하해 </h1>
+    <p class="subtitle">
+      인생 첫 돌잡이를 하는 지선이를 위해 <br>
+      축하의 한 마디를 남겨주세요 >.<
+    </p>
+
+    <!-- 입력 폼 -->
+    <form id="comment-form">
+      <input type="text" id="nickname" placeholder="이름 또는 닉네임" required>
+      <textarea id="message" placeholder="축하의 마음을 담아 메시지를 작성해 주세요!" required></textarea>
+      <button type="submit" class="submit-btn"> 마음 보내기 </button>
+    </form>
+    
+    <hr>
+    
+    <!-- [돌잡이 투표] -->
+    <div class="vote-section">
+      <div class="vote-title">서른두돌잡이, 지선이가 잡을 물건에 투표해 주세요!</div>
+      <div class="vote-grid">
+        <button type="button" class="vote-btn" data-option="cash">
+          <span class="vote-emoji">💵</span>
+          <span>평생 돈 걱정 없을 정도의 재물</span>
+          <span class="vote-count" id="count-cash">0표</span>
+        </button>
+        <button type="button" class="vote-btn" data-option="beer">
+          <span class="vote-emoji">💐</span>
+          <span>멋진 배우자와의 결혼</span>
+          <span class="vote-count" id="count-beer">0표</span>
+        </button>
+        <button type="button" class="vote-btn" data-option="pills">
+          <span class="vote-emoji">🎓</span>
+          <span>패티쉬 셀프 실현을 위한 대학원</span>
+          <span class="vote-count" id="count-pills">0표</span>
+        </button>
+        <button type="button" class="vote-btn" data-option="mouse">
+          <span class="vote-emoji">💻</span>
+          <span>일복...</span>
+          <span class="vote-count" id="count-mouse">0표</span>
+        </button>
+      </div>
+    </div>
+    
+    <hr>
+    
+    <h2>💌 </h2>
+    <div id="comments-list"></div>
+  </div> <!-- 카드 박스 닫기 완료 -->
+
+  <!-- [중복 구조 정리] -->
+  <div id="success-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3>마음 전달 완료 💙</h3>
+      <p>
+        소중한 마음이 잘 도착했어요. <br>
+        축하해 주셔서 감사합니다.
+      </p>
+      <button id="close-modal-btn" class="modal-close-btn">확인</button>
+    </div>
+  </div>
+
+  <!-- Firebase SDK 로드 및 로직 -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, setDoc, doc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAgnyTQJHhZfnMnmG6ViXOuW7ahv9TVFCg",
+      authDomain: "happy-js-s-birthday.firebaseapp.com",
+      projectId: "happy-js-s-birthday",
+      storageBucket: "happy-js-s-birthday.firebasestorage.app",
+      messagingSenderId: "303535194011",
+      appId: "1:303535194011:web:8dbb7ef66528336b7beb3e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const modal = document.getElementById('success-modal');
+
+    // [이펙트 폭죽 함수]
+    const triggerConfetti = () => {
+      confetti({
+        particleCount: 120,
+        spread: 75,
+        origin: { y: 0.6 },
+        colors: ['#0ea5e9', '#38bdf8', '#bae6fd', '#ffffff', '#e0f2fe']
+      });
+    };
+
+    // 팝업 열기/닫기 제어
+    const openModal = () => { 
+      modal.style.display = 'flex'; 
+      triggerConfetti(); 
+    };
+    const closeModal = () => { modal.style.display = 'none'; };
+    
+    // 정상 작동을 위해 이벤트 리스너 재바인딩
+    document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+
+    // [카운트다운 타이머]
+    const startCountdown = () => {
+      const targetDate = new Date("2026-08-01T00:00:00").getTime(); // 0801 여름 타겟
+      const timerElement = document.getElementById('dday-timer');
+
+      const updateTimer = () => {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        if (difference < 0) {
+          timerElement.innerText = "🎉 지서나 생일 축하해 🎉";
+          return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        timerElement.innerText = `생일까지 D-${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+      };
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    };
+    startCountdown();
+
+    // 돌잡이 투표 로직
+    const handleVote = async (option) => {
+      try {
+        const voteRef = doc(db, "votes", "doljabi");
+        await setDoc(voteRef, { [option]: increment(1) }, { merge: true });
+        triggerConfetti();
+      } catch (error) {
+        console.error("투표 오류: ", error);
+      }
+    };
+
+    document.querySelectorAll('.vote-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const option = btn.getAttribute('data-option');
+        handleVote(option);
+      });
+    });
+
+    // 실시간 득표수 갱신
+    onSnapshot(doc(db, "votes", "doljabi"), (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById('count-cash').innerText = `${data.cash || 0}표`;
+        document.getElementById('count-beer').innerText = `${data.beer || 0}표`;
+        document.getElementById('count-pills').innerText = `${data.pills || 0}표`;
+        document.getElementById('count-mouse').innerText = `${data.mouse || 0}표`;
+      }
+    });
+
+    // 메시지 저장
+    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('nickname').value;
+      const text = document.getElementById('message').value;
+
+      try {
+        await addDoc(collection(db, "wishes"), {
+          name: name,
+          text: text,
+          timestamp: new Date()
+        });
+        document.getElementById('message').value = ''; 
+        openModal(); 
+      } catch (error) {
+        console.error("저장 실패: ", error);
+      }
+    });
+
+    // 실시간 메시지 불러오기
+    const q = query(collection(db, "wishes"), orderBy("timestamp", "desc"));
+    onSnapshot(q, (snapshot) => {
+      const container = document.getElementById('comments-list');
+      container.innerHTML = '';
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        container.innerHTML += `
+          <div class="comment-item">
+            <div class="comment-name">✨ ${data.name}</div>
+            <div class="comment-text">${data.text}</div>
+          </div>
+        `;
+      });
+    });
+  </script>
+</body>
+</html>
