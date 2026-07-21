@@ -56,6 +56,58 @@
       border-radius: 50px;
       margin-bottom: 5px;
     }
+
+    /* [추가된 섹션: 상세 파티 안내문 & 타임테이블 디자인] */
+    .info-section {
+      background-color: #f0f9ff; /* 부드러운 아쿠아 블루 투명 배경 */
+      border: 1.5px dashed #38bdf8; /* 감성적인 파란색 점선 테두리 */
+      padding: 18px 20px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      text-align: left; /* 정갈하게 왼쪽 정렬 */
+      font-family: 'Gowun Batang', serif;
+    }
+    .info-title {
+      font-weight: bold;
+      font-size: 16px;
+      color: #0284c7;
+      margin-bottom: 12px;
+      text-align: center;
+      border-bottom: 1.5px dashed #bae6fd;
+      padding-bottom: 8px;
+    }
+    .info-content p {
+      margin: 8px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #334155;
+    }
+    .info-content strong {
+      color: #0ea5e9; /* 강조 색상 */
+    }
+    .info-sub-title {
+      font-weight: bold;
+      color: #0369a1;
+      font-size: 15px;
+      margin-top: 18px;
+      margin-bottom: 5px;
+      border-left: 3px solid #0ea5e9;
+      padding-left: 8px;
+    }
+    .timetable-list {
+      padding-left: 0;
+      list-style: none;
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+    .timetable-list li {
+      margin-bottom: 6px;
+      border-bottom: 1px dotted #cbd5e1;
+      padding-bottom: 4px;
+    }
+
     .vote-section {
       background-color: #f8fafc;
       padding: 20px 15px;
@@ -185,7 +237,7 @@
       line-height: 1.5;
     }
 
-    /* [팝업창 스타일 정의] */
+    /* [팝업창 스타일] */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -251,6 +303,59 @@
       인생 첫 돌잡이를 하는 지선이를 위해 <br>
       축하의 한 마디를 남겨주세요 >.<
     </p>
+
+<!-- [추가된 섹션: 파티 상세 안내판 & 실시간 지도 영역] -->
+    <div class="info-section">
+      <div class="info-title">✨ 생일 포트럭 파티 초대장 ✨</div>
+      <div class="info-content">
+        <p style="text-align: center; font-weight: bold; margin-bottom: 20px; color: #0284c7;">
+          음식, 술, 그리고 레즈비언 필승룩을 장착하고 만나는<br>
+          지선이의 생일 포트럭 파티에 여러분을 초대합니다 >.<
+        </p>
+        
+        <div class="info-sub-title">📍 일시 및 장소</div>
+        <p><strong>일시:</strong> 2026년 8월 1일(토) 12:00 PM</p>
+        <p><strong>장소:</strong> 스피크이지 (서울 서대문구 연세로7안길 10-5 지하1층)</p>
+        
+        <!-- 실시간 구글 지도 연동 (신촌 스피크이지 주소 핀 마크) -->
+        <iframe 
+          src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%EC%97%B0%EC%84%B8%EB%A1%9C7%EC%95%88%EA%B8%B8%2010-5&t=&z=17&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="220" 
+          style="border:0; border-radius: 14px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+
+        <div class="info-sub-title">👗 드레스코드: 과한 레즈비언</div>
+        <p>가장 레즈비언스러운 <strong>'필승룩'</strong>을 입고 입장해 주세요.<br>
+        투표를 통해 선정된 '베스트 드레서'에게는 특별한 선물이 증정됩니다!</p>
+
+        <div class="info-sub-title">🥪 준비물 & 제공 안내</div>
+        <p><strong>챙겨올 것 (필수):</strong> 포트럭 파티를 위한 1~2인분의 음식</p>
+        <p><strong>챙겨올 것 (선택):</strong> 사회생활력, 생일 선물(2만원 이하)</p>
+        <p><strong>제공되는 것:</strong> 간단한 안주류, 나영 Pick 술, 플레이리스트</p>
+        <p style="font-size: 13px; color: #64748b; background: #e0f2fe; padding: 10px; border-radius: 10px; margin-top: 10px;">
+          전자레인지, 인덕션, 에어프라이어 구비<br>
+          데워 먹어야 하는 요리도 괜찮습니다!
+        </p>
+
+        <div class="info-sub-title">⏳ 파티 타임테이블</div>
+        <ul class="timetable-list">
+          <li><strong>12:00 ~ 12:30</strong> | 끔찍한 탑엘식 자기소개 & 필승룩 소개</li>
+          <li><strong>12:30 ~ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> | 가져온 음식 소개, 포트럭 파티 시작</li>
+
+          <li><strong>15:30 ~ 16:00</strong> | 서른두돌잡이, 선물 언박싱</li>
+          <li><strong>16:00 ~ 17:00</strong> | 베스트 드레서 시상, 정리정돈</li>
+        </ul>
+
+        <p style="text-align: center; font-size: 13.5px; font-weight: bold; color: #0284c7; margin-top: 20px; border-top: 1px dashed #bae6fd; padding-top: 15px;">
+          파티 끝나고 아쉬운 사람 계신가요?<br>
+          원하시는 분들은 특별히 더 놀아드릴 수는 있습니다 ^_^... <br>
+          <span style="font-size: 12px; color: #64748b;">(집에 가시 싫은 분들은 현장에서 슬그머니 붙어주세요)</span>
+        </p>
+      </div>
+    </div>
 
     <!-- 입력 폼 -->
     <form id="comment-form">
@@ -372,23 +477,41 @@
     };
     startCountdown();
 
-    // 돌잡이 투표 로직
+    // 돌잡이 투표 로직 (안내 문구 보강 및 1회 제한)
     const handleVote = async (option) => {
+      // 1. 이미 투표했는지 체크하여 안내 문구 띄우기
+      if (localStorage.getItem('hasVoted')) {
+        alert("이미 투표에 참여하셨습니다!");
+        return;
+      }
+
       try {
         const voteRef = doc(db, "votes", "doljabi");
         await setDoc(voteRef, { [option]: increment(1) }, { merge: true });
+        
+        // 2. 투표 성공 시 로컬 스토리지에 기록 저장
+        localStorage.setItem('hasVoted', 'true');
+        
         triggerConfetti();
+        alert("투표가 성공적으로 반영되었습니다! 🎉");
       } catch (error) {
         console.error("투표 오류: ", error);
       }
     };
 
+    // 투표 버튼 이벤트 바인딩
     document.querySelectorAll('.vote-btn').forEach(btn => {
       btn.addEventListener('click', () => {
+        // 클릭 시 바로 로컬 스토리지 체크해서 안내 문구부터 띄우도록 이중 안전장치 마련
+        if (localStorage.getItem('hasVoted')) {
+          alert("이미 투표에 참여하셨습니다!");
+          return;
+        }
         const option = btn.getAttribute('data-option');
         handleVote(option);
       });
     });
+
 
     // 실시간 득표수 갱신
     onSnapshot(doc(db, "votes", "doljabi"), (docSnap) => {
@@ -420,21 +543,39 @@
       }
     });
 
-    // 실시간 메시지 불러오기
+    // 실시간 메시지 불러오기 (시간 표시 추가)
     const q = query(collection(db, "wishes"), orderBy("timestamp", "desc"));
     onSnapshot(q, (snapshot) => {
       const container = document.getElementById('comments-list');
       container.innerHTML = '';
       snapshot.forEach((doc) => {
         const data = doc.data();
+        
+        // 날짜-시간(초단위까지) 포맷팅
+        let timeStr = "";
+        if (data.timestamp) {
+          const date = data.timestamp.toDate ? data.timestamp.toDate() : new Date(data.timestamp);
+          const yyyy = date.getFullYear();
+          const mm = String(date.getMonth() + 1).padStart(2, '0');
+          const dd = String(date.getDate()).padStart(2, '0');
+          const hh = String(date.getHours()).padStart(2, '0');
+          const min = String(date.getMinutes()).padStart(2, '0');
+          const ss = String(date.getSeconds()).padStart(2, '0');
+          timeStr = `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+        }
+
         container.innerHTML += `
           <div class="comment-item">
-            <div class="comment-name">✨ ${data.name}</div>
+            <div class="comment-name" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span>✨ ${data.name}</span>
+              <span style="font-size: 11px; color: #94a3b8; font-weight: normal;">${timeStr}</span>
+            </div>
             <div class="comment-text">${data.text}</div>
           </div>
         `;
       });
     });
+
   </script>
 </body>
 </html>
