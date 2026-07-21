@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> 지선아 생일 축하해 </title>
+  <title>지선아 생일 축하해</title>
 
-  <!-- [컨페티 효과] -->
+  <!-- confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
 
     body {
       background-color: #8ec6f5; 
@@ -34,7 +34,6 @@
       text-align: center;
     }
     
-    /* [타이머 & 투표] */
     .countdown-box {
       background-color: #0ea5e9;
       color: white;
@@ -57,19 +56,18 @@
       margin-bottom: 5px;
     }
 
-    /* [추가된 섹션: 상세 파티 안내문 & 타임테이블 디자인] */
     .info-section {
-      background-color: #f0f9ff; /* 부드러운 아쿠아 블루 투명 배경 */
-      border: 1.5px dashed #38bdf8; /* 감성적인 파란색 점선 테두리 */
+      background-color: #f0f9ff; 
+      border: 1.5px dashed #38bdf8; 
       padding: 18px 20px;
       border-radius: 20px;
       margin-bottom: 25px;
-      text-align: left; /* 정갈하게 왼쪽 정렬 */
+      text-align: left; 
       font-family: 'Gowun Batang', serif;
     }
     .info-title {
       font-weight: bold;
-      font-size: 16px;
+      font-size: 15px;
       color: #0284c7;
       margin-bottom: 12px;
       text-align: center;
@@ -78,12 +76,12 @@
     }
     .info-content p {
       margin: 8px 0;
-      font-size: 14px;
+      font-size: 10px;
       line-height: 1.6;
       color: #334155;
     }
     .info-content strong {
-      color: #0ea5e9; /* 강조 색상 */
+      color: #0ea5e9; 
     }
     .info-sub-title {
       font-weight: bold;
@@ -97,7 +95,7 @@
     .timetable-list {
       padding-left: 0;
       list-style: none;
-      font-size: 13px;
+      font-size: 10px;
       color: #475569;
       line-height: 1.6;
       margin: 8px 0;
@@ -117,7 +115,7 @@
       font-family: 'Gowun Batang', serif;
     }
     .vote-title {
-      font-size: 15px;
+      font-size: 12px;
       font-weight: bold;
       color: #0369a1;
       margin-bottom: 15px;
@@ -133,7 +131,7 @@
       border: 1.5px solid #e2e8f0;
       padding: 12px;
       border-radius: 14px;
-      font-size: 12px;
+      font-size: 10px;
       font-family: 'Gowun Batang', serif;
       font-weight: bold;
       cursor: pointer;
@@ -153,7 +151,7 @@
       margin-bottom: 5px;
     }
     .vote-count {
-      font-size: 12px;
+      font-size: 10px;
       color: #0ea5e9;
       margin-top: 5px;
     }
@@ -164,12 +162,11 @@
       border: 1.5px solid #e2e8f0;
       border-radius: 16px;
       box-sizing: border-box;
-      font-size: 16px;
       outline: none;
       background-color: #f8fafc;
       transition: all 0.3s ease;
       font-family: 'Gowun Batang', sans-serif;
-      font-size: 16px;
+      font-size: 11px;
     }
     input:focus, textarea:focus {
       border: 1.5px solid #0ea5e9;
@@ -180,7 +177,7 @@
       height: 120px;
       resize: none;
       font-family: 'Gowun Batang', sans-serif;
-      font-size: 16px;
+      font-size: 11px;
     }
     button.submit-btn {
       width: 100%;
@@ -189,7 +186,7 @@
       color: white;
       border: none;
       border-radius: 16px;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
@@ -206,13 +203,13 @@
     }
 
     h1 {
-      font-size: 25px;
+      font-size: 20px;
       color: #0ea5e9;
       margin-bottom: 20px;
-   }
+    }
 
     h2 {
-      font-size: 18px;
+      font-size: 16px;
       color: #334155;
       margin-bottom: 20px;
     }
@@ -228,16 +225,15 @@
     .comment-name {
       font-weight: bold;
       color: #0284c7;
-      font-size: 14px;
+      font-size: 12px;
       margin-bottom: 5px;
     }
     .comment-text {
       margin: 0;
-      font-size: 15px;
+      font-size: 11px;
       line-height: 1.5;
     }
 
-    /* [팝업창 스타일] */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -294,17 +290,15 @@
 <body>
 
   <div class="card">
-    <!-- [디데이 타이머] -->
-    <div id="dday-timer" class="countdown-box">남은 시간 계산 </div>
-    <div class="concept-tag"> 🎂 지서니 서른두돌잔치 🎂</div>
+    <div id="dday-timer" class="countdown-box">남은 시간 계산</div>
+    <div class="concept-tag">🎂 지서니 서른두돌잔치 🎂</div>
      
-    <h1> 하나둘셋! 지선아 생일 축하해 </h1>
+    <h1>하나둘셋! 지선아 생일 축하해</h1>
     <p class="subtitle">
       인생 첫 돌잡이를 하는 지선이를 위해 <br>
       축하의 한 마디를 남겨주세요 >.<
     </p>
 
-<!-- [추가된 섹션: 파티 상세 안내판 & 실시간 지도 영역] -->
     <div class="info-section">
       <div class="info-title">✨ 생일 포트럭 파티 초대장 ✨</div>
       <div class="info-content">
@@ -315,9 +309,10 @@
         
         <div class="info-sub-title">📍 일시 및 장소</div>
         <p><strong>일시:</strong> 2026년 8월 1일(토) 12:00 PM</p>
-        <p><strong>장소:</strong> 스피크이지 (서울 서대문구 연세로7안길 10-5 지하1층)</p>
+        <p><strong>장소:</strong> 스피크이지 <br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(서울 서대문구 연세로7안길 10-5 지하1층)
+         </p>
         
-        <!-- 실시간 구글 지도 연동 (신촌 스피크이지 주소 핀 마크) -->
         <iframe 
           src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%EC%97%B0%EC%84%B8%EB%A1%9C7%EC%95%88%EA%B8%B8%2010-5&t=&z=17&ie=UTF8&iwloc=&output=embed" 
           width="100%" 
@@ -327,46 +322,53 @@
           loading="lazy">
         </iframe>
 
+        <div style="text-align: right; margin-top: 12px; margin-bottom: 12px;">
+          <a href="https://naver.me/GntmbOm7" 
+             target="_blank" 
+             style="display: inline-block; background-color: #e0f2fe; color: #0369a1; border: 1.5px solid #bae6fd; padding: 8px 16px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 10px; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(14, 165, 233, 0.08);"
+             onmouseover="this.style.backgroundColor='#bae6fd'" 
+             onmouseout="this.style.backgroundColor='#e0f2fe'">
+            📍 네이버 지도에서 위치 보기
+          </a>
+        </div>
+
         <div class="info-sub-title">👗 드레스코드: 과한 레즈비언</div>
         <p>가장 레즈비언스러운 <strong>'필승룩'</strong>을 입고 입장해 주세요.<br>
         투표를 통해 선정된 '베스트 드레서'에게는 특별한 선물이 증정됩니다!</p>
 
         <div class="info-sub-title">🥪 준비물 & 제공 안내</div>
-        <p><strong>챙겨올 것 (필수):</strong> 포트럭 파티를 위한 1~2인분의 음식</p>
-        <p><strong>챙겨올 것 (선택):</strong> 사회생활력, 생일 선물(2만원 이하)</p>
+        <p><strong>챙겨올 것(필수):</strong> 포트럭 파티를 위한 1~2인분의 음식</p>
+        <p><strong>챙겨올 것(선택):</strong> 사회생활력, 생일 선물(2만원 이하)</p>
         <p><strong>제공되는 것:</strong> 간단한 안주류, 나영 Pick 술, 플레이리스트</p>
-        <p style="font-size: 13px; color: #64748b; background: #e0f2fe; padding: 10px; border-radius: 10px; margin-top: 10px;">
+        <p style="text-align: center; font-size: 10px; color: #64748b; background: #e0f2fe; padding: 10px; border-radius: 10px; margin-top: 10px;">
           전자레인지, 인덕션, 에어프라이어 구비<br>
           데워 먹어야 하는 요리도 괜찮습니다!
         </p>
 
         <div class="info-sub-title">⏳ 파티 타임테이블</div>
         <ul class="timetable-list">
-          <li><strong>12:00 ~ 12:30</strong> | 끔찍한 탑엘식 자기소개 & 필승룩 소개</li>
-          <li><strong>12:30 ~ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> | 가져온 음식 소개, 포트럭 파티 시작</li>
-
+          <li><strong>12:00 ~ 12:30</strong> | 탑엘식 자기소개 & 필승룩 소개</li>
+          <li><strong>12:30 ~ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> | 가져온 음식 소개, 포트럭 파티 시작</li>
           <li><strong>15:30 ~ 16:00</strong> | 서른두돌잡이, 선물 언박싱</li>
           <li><strong>16:00 ~ 17:00</strong> | 베스트 드레서 시상, 정리정돈</li>
         </ul>
 
-        <p style="text-align: center; font-size: 13.5px; font-weight: bold; color: #0284c7; margin-top: 20px; border-top: 1px dashed #bae6fd; padding-top: 15px;">
+        <p style="text-align: center; font-size: 11.5px; font-weight: bold; color: #0284c7; margin-top: 20px; border-top: 1px dashed #bae6fd; padding-top: 15px;">
           파티 끝나고 아쉬운 사람 계신가요?<br>
-          원하시는 분들은 특별히 더 놀아드릴 수는 있습니다 ^_^... <br>
-          <span style="font-size: 12px; color: #64748b;">(집에 가시 싫은 분들은 현장에서 슬그머니 붙어주세요)</span>
+          원하시는 분들은 함께 2차에 가요...^_^ <br>
+          <span style="font-size: 10px; color: #64748b;">(호스트가 지치지 않을 수 있을지...)</span>
         </p>
       </div>
     </div>
 
-    <!-- 입력 폼 -->
     <form id="comment-form">
       <input type="text" id="nickname" placeholder="이름 또는 닉네임" required>
       <textarea id="message" placeholder="축하의 마음을 담아 메시지를 작성해 주세요!" required></textarea>
-      <button type="submit" class="submit-btn"> 마음 보내기 </button>
+      <button type="submit" class="submit-btn">마음 보내기</button>
     </form>
     
     <hr>
     
-    <!-- [돌잡이 투표] -->
     <div class="vote-section">
       <div class="vote-title">서른두돌잡이, 지선이가 잡을 물건에 투표해 주세요!</div>
       <div class="vote-grid">
@@ -395,11 +397,10 @@
     
     <hr>
     
-    <h2>💌 </h2>
+    <h2>💌</h2>
     <div id="comments-list"></div>
-  </div> <!-- 카드 박스 닫기 -->
+  </div>
 
-  <!-- [중복 정리] -->
   <div id="success-modal" class="modal-overlay">
     <div class="modal-content">
       <h3>마음 전달 완료 💙</h3>
@@ -411,10 +412,16 @@
     </div>
   </div>
 
-  <!-- Firebase SDK 로드 및 로직 -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, setDoc, doc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // 콘솔 메시지 
+console.log(
+  '%c애인이 짠 코드 뜯어보는 거 아니지? 생일 축하해! 사랑해 >.<',
+  'font-size: 15px; font-weight: bold; color: #0369a1; background: #e0f2fe; padding: 6px 12px; border-radius: 8px; font-family: sans-serif; display: inline-block; margin-top: 6px;'
+);
+
 
     const firebaseConfig = {
       apiKey: "AIzaSyAgnyTQJHhZfnMnmG6ViXOuW7ahv9TVFCg",
@@ -427,10 +434,9 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-
     const modal = document.getElementById('success-modal');
 
-    // [이펙트 폭죽 함수]
+    // 폭죽 효과
     const triggerConfetti = () => {
       confetti({
         particleCount: 120,
@@ -440,19 +446,20 @@
       });
     };
 
-    // 팝업 열기/닫기 제어
     const openModal = () => { 
       modal.style.display = 'flex'; 
       triggerConfetti(); 
     };
-    const closeModal = () => { modal.style.display = 'none'; };
     
-    // 정상 작동을 위해 이벤트 리스너 재바인딩
+    const closeModal = () => { 
+      modal.style.display = 'none'; 
+    };
+    
     document.getElementById('close-modal-btn').addEventListener('click', closeModal);
 
-    // [카운트다운 타이머]
+    // 디데이 타이머
     const startCountdown = () => {
-      const targetDate = new Date("2026-08-01T00:00:00").getTime(); // 0801 여름 타겟
+      const targetDate = new Date("2026-08-01T00:00:00").getTime();
       const timerElement = document.getElementById('dday-timer');
 
       const updateTimer = () => {
@@ -477,9 +484,8 @@
     };
     startCountdown();
 
-    // 돌잡이 투표 로직 (안내 문구 보강 및 1회 제한)
+    // 돌잡이 투표 처리
     const handleVote = async (option) => {
-      // 1. 이미 투표했는지 체크하여 안내 문구 띄우기
       if (localStorage.getItem('hasVoted')) {
         alert("이미 투표에 참여하셨습니다!");
         return;
@@ -489,9 +495,7 @@
         const voteRef = doc(db, "votes", "doljabi");
         await setDoc(voteRef, { [option]: increment(1) }, { merge: true });
         
-        // 2. 투표 성공 시 로컬 스토리지에 기록 저장
         localStorage.setItem('hasVoted', 'true');
-        
         triggerConfetti();
         alert("투표가 성공적으로 반영되었습니다! 🎉");
       } catch (error) {
@@ -499,10 +503,8 @@
       }
     };
 
-    // 투표 버튼 이벤트 바인딩
     document.querySelectorAll('.vote-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        // 클릭 시 바로 로컬 스토리지 체크해서 안내 문구부터 띄우도록 이중 안전장치 마련
         if (localStorage.getItem('hasVoted')) {
           alert("이미 투표에 참여하셨습니다!");
           return;
@@ -512,8 +514,7 @@
       });
     });
 
-
-    // 실시간 득표수 갱신
+    // 실시간 득표 갱신
     onSnapshot(doc(db, "votes", "doljabi"), (docSnap) => {
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -524,14 +525,14 @@
       }
     });
 
-    // 메시지 저장
+    // 방명록 등록
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('nickname').value;
       const text = document.getElementById('message').value;
 
       try {
-        await addDoc(collection(db, "wishes"), {
+        await addDoc(collection(db, "letters"), {
           name: name,
           text: text,
           timestamp: new Date()
@@ -543,15 +544,15 @@
       }
     });
 
-    // 실시간 메시지 불러오기 (시간 표시 추가)
-    const q = query(collection(db, "wishes"), orderBy("timestamp", "desc"));
+    // 실시간 방명록 목록
+    const q = query(collection(db, "letters"), orderBy("timestamp", "desc"));
     onSnapshot(q, (snapshot) => {
       const container = document.getElementById('comments-list');
       container.innerHTML = '';
       snapshot.forEach((doc) => {
         const data = doc.data();
         
-        // 날짜-시간(초단위까지) 포맷팅
+        // 날짜 포맷 (YYYY-MM-DD HH:mm:ss)
         let timeStr = "";
         if (data.timestamp) {
           const date = data.timestamp.toDate ? data.timestamp.toDate() : new Date(data.timestamp);
@@ -575,7 +576,7 @@
         `;
       });
     });
-
   </script>
 </body>
+</html>
 </html>
